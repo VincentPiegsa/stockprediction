@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container" style="margin-top: 5%; margin-bottom: 2.5%;">
+
+    <div class="card z-depth-0">
+	<div class="card-content z-depth-0">
+	    <div class="card-title" style="margin-bottom: 5%;">
+		Select Stock
+	    </div>
+
+	    <form action="" method="POST">
+		{{ form.hidden_tag() }}
+
+		<fieldset>
+		    <div>
+			{{ form.stock.label }}
+
+			{% if form.stock.errors %}
+			    {{ form.stock }}
+			    {% for error in form.stock.errors%}
+		   	    	<span class="red-text">{{ error }}</span>
+			    {% endfor%}
+			{% else %}
+			    {{ form.stock }}
+			{% endif %}
+		    </div>
+		</fieldset>
+		<div style="margin-top: 5%;">
+		    {{ form.submit(class="btn btn-large waves-effect white z-depth-0", style="border: solid #555; border-width: 1px;") }}
+		</div>
+	    </form>
+	</div>
+    </div>
+
+</div>
+
+{% endblock body %}
+

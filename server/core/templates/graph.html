@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="row">
+
+    <div class="col s12">
+	<ul class="tabs">
+	    <li class="tab col s6">
+		<a href="#bargraph" class="black-text">Stock Data</a>
+	    </li>
+	    <li class="tab col s6">
+		<a href="#table" class="black-text">Prediction</a>
+	    </li>
+	</ul>
+    </div>
+
+</div>
+
+<div class="chart" id="bargraph" style="margin-left: 2%; margin-right: 2%;">
+    <script>
+        var graphs = {{plot | safe}};
+	Plotly.plot('bargraph',graphs,{});
+    </script>
+</div>
+
+<div id="table">
+{% if data is defined %}
+    <div class="container">
+        <table class="striped highlight responsive">
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>Predicted Close</td>
+		    <td>Trend</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in data.iterrows() %}
+                    <tr>
+			<td>{{ value['Date'].date() }}</td>
+                        <td>{{ value['Adj Close']|round(2) }} $</td>
+                    	<td>{{ value['Trend']|round(2) }} %</td>
+		    </tr>
+                {% endfor %}
+	    </tbody>
+	</table>    
+    </div>
+{% endif %}
+</div>
+
+
+<script>
+    $(document).ready(function(){
+	$('.tabs').tabs();
+    });
+</script>
+
+{% endblock body %}

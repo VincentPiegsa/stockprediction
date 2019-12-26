@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    {% if title %}
+        <title>{{ title }} - Website</title>
+    {% else %}
+        <title>Website</title>
+    {% endif %}
+</head>
+<body>
+
+<main>
+    <div class="container">
+        
+        <div class="row" style="margin-top: 10%;">
+            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                
+                <div class="card z-depth-0">
+                    <div class="card-content">
+                        <div class="card-title" style="margin-bottom: 5%;">Login</div>
+
+                        <form action="" method="POST">
+                            {{ form.hidden_tag() }}
+                            <fieldset>
+                                
+                                <div>
+                                    {{ form.username.label }}
+
+                                    {% if form.username.errors %}
+                                        {{ form.username }}
+
+                                        {% for error in form.username.errors %}
+                                            <span class="red-text">{{ error }}</span>
+                                        {% endfor %}
+
+                                    {% else %}
+                                        {{ form.username }}
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {{ form.password.label }}
+
+                                    {% if form.password.errors %}
+                                        {{ form.password }}
+
+                                        {% for error in form.password.errors %}
+                                            <span class="red-text">{{ error }}</span>
+                                        {% endfor %}
+
+                                    {% else %}
+                                        {{ form.password }}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <div style="margin-top: 5%;">
+                                {{ form.submit(class="btn btn-large white waves-effect z-depth-0", style="border: solid #555; border-width: 1px;") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+    <footer class="page-footer black">
+
+	<div class="container">
+	    <div class="footer-copyright">
+        	&copy; 2019 Vincent Piegsa
+		<a class="grey-text text-lighten-4 right" href="https://github.com/VincentPiegsa"><i class="fa fa-github fa-2x"></i></a>
+	    </div>
+	</div>
+
+    </footer>
+
+    <!-- Compiled and minified jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>
+

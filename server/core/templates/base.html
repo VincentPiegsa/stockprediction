@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Compiled and minified d3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    {% if title %}
+        <title>{{ title }} - Stock Prediction</title>
+    {% else %}
+        <title>Website</title>
+    {% endif %}
+</head>
+<body>
+
+    <header>
+
+        <div class="navbar-fixed">
+            <nav class="nav-wrapper black">
+                <div class="container">
+                    <a class="brand-logo"><i class="material-icons">equalizer</i>Stock Prediction</a>
+                    <a class="sidenav-trigger" data-target="mobilenav"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{ url_for('main.home') }}" class="navitem-hover">Home</a></li>
+			<li><a href="{{ url_for('main.stocks') }}" class="navitem-hover">Stocks</a></li>
+                        <li><a href="{{ url_for('main.documentation') }}" class="navitem-hover">Documentation</a></li> 
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('main.logout') }}" class="navitem-hover">Logout</a></li>
+                        {% endif %}
+                    </ul>
+            </nav>
+        </div>
+
+        <ul class="sidenav" id="mobilenav">
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+	    <li><a href="{{ url_for('main.stocks') }}">Stocks</a></li>
+            <li><a href="{{ url_for('main.documentation') }}">Documentation</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+
+    </header>
+
+    <main>
+
+        {% block body %}
+        {% endblock body %}
+
+    </main>
+
+    <footer class="page-footer black">
+
+	<div class="container">
+	    <div class="footer-copyright">
+            	&copy; 2019 Vincent Piegsa
+	    	<a class="grey-text text-lighten-4 right" href="https://github.com/VincentPiegsa/stockprediction"><i class="fa fa-github fa-2x"></i></a>
+  	    </div>
+	</div>
+
+    </footer>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+</html>
+
